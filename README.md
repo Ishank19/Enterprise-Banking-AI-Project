@@ -16,6 +16,7 @@ The MVP includes:
 - Synthetic banking data generation with Python and pandas.
 - Around 1,000 customers, 2,500 support tickets, 5,000 transactions, 300 fraud cases, and AI interaction examples.
 - Streamlit dashboard with KPI cards and Plotly charts.
+- Static customer-facing React portal for demo self-service banking workflows.
 - Optional OpenAI-powered executive KPI summary.
 - Power BI-ready CSV exports in the `data/` folder.
 
@@ -75,6 +76,7 @@ Core design choices:
 - Fraud operations reporting by fraud type, severity, loss amount, and recovery amount.
 - AI automation analytics by workflow area, estimated minutes saved, and human acceptance rate.
 - Optional AI-generated executive briefing with operational insights, recommended actions, and risks to monitor.
+- Customer-facing BankAssist AI portal for self-service support, fraud reporting, and service status simulation.
 - PostgreSQL schema and SQL queries for backend analytics validation.
 - CSV exports structured for Power BI ingestion.
 
@@ -86,6 +88,7 @@ Core design choices:
 | Querying | SQL | KPI validation, operational analytics, and reporting logic. |
 | Data generation | Python, pandas, NumPy, Faker | Synthetic banking data creation for repeatable portfolio demos. |
 | App framework | Streamlit | Interactive dashboard and executive reporting interface. |
+| Customer portal | React, Vite, Tailwind CSS | Static public demo frontend for customer self-service workflows. |
 | Visualization | Plotly | Bar charts, funnel charts, pie charts, and time-series views. |
 | AI workflow | OpenAI API | Optional executive KPI narrative generation. |
 | Configuration | python-dotenv | Local environment variable management. |
@@ -142,6 +145,7 @@ sql/
 scripts/
 data/
 app/
+customer-portal/
 docs/
 dashboards/
 presentation/
@@ -217,6 +221,22 @@ streamlit run app/streamlit_app.py
 
 The dashboard reads from CSV files by default, so it can run even before PostgreSQL loading.
 
+## Customer-Facing Demo Portal
+
+The `customer-portal/` folder contains the BankAssist AI Customer Portal, a separate static React frontend that complements the internal Streamlit operations dashboard.
+
+It demonstrates customer experience workflows including digital self-service, support request triage, AI-style rule-based guidance, suspicious transaction reporting, fraud risk simulation, and service recovery status. It uses demo/mock data only and does not require authentication, a backend, real customer data, or an OpenAI API key.
+
+Run it locally from the `customer-portal/` folder:
+
+```bash
+npm install
+npm run dev
+npm run build
+```
+
+For Vercel, deploy the `customer-portal/` folder as a standalone Vite project.
+
 ## Optional OpenAI Setup
 
 To enable the AI executive summary button, add these values to `.env`:
@@ -254,6 +274,7 @@ Use the relationships described in `sql/01_create_schema.sql` to build the model
 | `scripts/load_data_to_postgres.py` | Loads generated CSV files into PostgreSQL. |
 | `app/streamlit_app.py` | Interactive Streamlit dashboard. |
 | `app/ai_assistant.py` | Optional OpenAI executive summary helper. |
+| `customer-portal/` | Static React customer self-service portal deployable on Vercel. |
 | `docs/data_dictionary.md` | Business definitions for tables and fields. |
 | `docs/project_summary.md` | Consulting-style project overview. |
 | `requirements.txt` | Python package dependencies. |
