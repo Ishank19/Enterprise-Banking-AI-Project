@@ -275,3 +275,6 @@ Potential impact areas:
 ## Resume-Ready Project Summary
 
 Built an Enterprise Banking AI Transformation Platform simulating a retail bank modernization program across digital onboarding, customer support, fraud operations, SLA monitoring, AI-assisted workflows, and executive KPI reporting. Designed a PostgreSQL data model, generated synthetic banking datasets with Python and pandas, developed SQL KPI queries, built an interactive Streamlit and Plotly dashboard, added optional OpenAI-powered executive summaries, and produced Power BI-ready CSV exports for business intelligence reporting.
+## Architecture
+
+See [docs/architecture.md](docs/architecture.md) for the project architecture diagram and layer overview.
